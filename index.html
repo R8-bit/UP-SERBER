@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UP SERBER — Официальные ссылки и донат</title>
+  <meta name="description"
+    content="Все официальные ссылки стримера UP SERBER: YouTube, Telegram, ВКонтакте и способы поддержки донатом.">
+
+  <!-- Подключение шрифтов Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="gallery/ser1.jpg">
+</head>
+
+<body>
+  <!-- Фоновые эффекты и частицы -->
+  <div class="bg-atmosphere" aria-hidden="true">
+    <div class="ambient-glow glow-cyan"></div>
+    <div class="ambient-glow glow-amber"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="bg-grid-overlay"></div>
+  </div>
+
+  <main class="page-container">
+
+    <!-- Верхняя шапка (баннер) -->
+    <header class="banner-wrapper">
+      <div class="banner-image-container">
+        <img src="gallery/serber-shabka.jpg" alt="SERBER Шапка канала" class="banner-img" id="bannerImg">
+        <div class="banner-fade-overlay"></div>
+      </div>
+
+      <!-- Верхняя панель действий (Поделиться) -->
+      <div class="top-nav-bar">
+        <button class="share-btn" id="shareBtn" title="Скопировать ссылку на страницу" aria-label="Поделиться">
+          <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          <span class="share-btn-text">Поделиться</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Секция профиля: Аватарка и инфо -->
+    <section class="profile-section">
+      <!-- Контейнер аватара с анимированной синей дымной рамкой -->
+      <div class="avatar-wrapper">
+        <div class="avatar-ink-frame-container">
+          <img src="gallery/avatar-ink-blue.png" alt="Анимированная рамка" class="avatar-ink-frame">
+        </div>
+
+        <div class="avatar-inner">
+          <img src="gallery/ser1.jpg" alt="SERBER Аватар" class="avatar-img" id="avatarImg">
+        </div>
+      </div>
+
+      <!-- Имя и бейдж верификации -->
+      <div class="author-info">
+        <div class="name-badge-row">
+          <h1 class="author-name">UP SERBER</h1>
+          <span class="verified-badge" title="Подтверждённый профиль">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.2 14.2l-3.5-3.5 1.41-1.41 2.09 2.08 5.69-5.69 1.41 1.41-7.1 7.11z" />
+            </svg>
+          </span>
+        </div>
+
+        <!-- Заголовок призыва к донату (как в референсе) -->
+        <h2 class="sub-headline">ПОДДЕРЖАТЬ МЕНЯ ДОНАТИКОМ ТУТ)</h2>
+        <p class="sub-text">Все мои ссылки — здесь</p>
+      </div>
+    </section>
+
+    <!-- Список из 5 ссылок -->
+    <section class="links-section" aria-label="Ссылки">
+      <div class="links-list">
+
+        <!-- 1. DonatePay -->
+        <a href="https://new.donatepay.ru/donate/1307876" target="_blank" rel="noopener noreferrer"
+          class="link-card link-donatepay" id="link-dp">
+          <div class="card-icon-box dp-badge">
+            <img src="icon/donatepay.svg" alt="DonatePay" class="badge-icon icon-dp">
+          </div>
+          <div class="card-content">
+            <div class="card-title">DonatePay</div>
+            <div class="card-subtitle">Донат на развитие канала</div>
+          </div>
+          <div class="card-bg-brand" aria-hidden="true">
+            <img src="icon/logo-new-dark.svg" alt="" class="card-bg-brand-img">
+          </div>
+          <div class="card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+          <div class="card-glow-reflection"></div>
+        </a>
+
+        <!-- 3. Перевод по номеру карты -->
+        <button type="button" class="link-card link-card-number" id="copyCardBtn" data-card="2202 2092 3153 2168"
+          title="Нажмите, чтобы скопировать номер карты">
+          <div class="card-icon-box card-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <div class="card-title">Номер карты (МИР)</div>
+            <div class="card-subtitle card-num-text">2202 2092 3153 2168</div>
+          </div>
+          <div class="card-copy-action">
+            <span class="copy-tag" id="copyTagText">Скопировать</span>
+            <svg class="copy-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </div>
+          <div class="card-glow-reflection"></div>
+        </button>
+
+        <!-- 4. DonationAlerts -->
+        <a href="https://www.donationalerts.com/r/shtorm444" target="_blank" rel="noopener noreferrer"
+          class="link-card link-donationalerts" id="link-da">
+          <div class="card-icon-box da-badge">
+            <img src="icon/donationalerts.svg" alt="DonationAlerts" class="badge-icon icon-da">
+          </div>
+          <div class="card-content">
+            <div class="card-title">DonationAlerts</div>
+            <div class="card-subtitle">Донат на развитие канала</div>
+          </div>
+          <div class="card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+          <div class="card-glow-reflection"></div>
+        </a>
+
+        <!-- 3. YouTube -->
+        <a href="https://www.youtube.com/@Serber-yt" target="_blank" rel="noopener noreferrer"
+          class="link-card link-youtube" id="link-yt">
+          <div class="card-icon-box yt-badge">
+            <img src="icon/youtube.svg" alt="YouTube" class="badge-icon icon-yt">
+          </div>
+          <div class="card-content">
+            <div class="card-title">YouTube</div>
+            <div class="card-subtitle">Смотри новые ролики и стримы</div>
+          </div>
+          <div class="card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+          <div class="card-glow-reflection"></div>
+        </a>
+
+        <!-- 4. Telegram -->
+        <a href="https://t.me/serberff" target="_blank" rel="noopener noreferrer" class="link-card link-telegram"
+          id="link-tg">
+          <div class="card-icon-box tg-badge">
+            <img src="icon/telegram.svg" alt="Telegram" class="badge-icon icon-tg">
+          </div>
+          <div class="card-content">
+            <div class="card-title">Telegram</div>
+            <div class="card-subtitle">Новости и общение</div>
+          </div>
+          <div class="card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+          <div class="card-glow-reflection"></div>
+        </a>
+
+        <!-- 5. VK -->
+        <a href="https://vk.ru/savaaa_14" target="_blank" rel="noopener noreferrer" class="link-card link-vk"
+          id="link-vk">
+          <div class="card-icon-box vk-badge">
+            <img src="icon/vk.svg" alt="VK" class="badge-icon icon-vk">
+          </div>
+          <div class="card-content">
+            <div class="card-title">VK</div>
+            <div class="card-subtitle">Мои посты и обновления</div>
+          </div>
+          <div class="card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+          <div class="card-glow-reflection"></div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Подвал страницы -->
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        © <span id="currentYear">2026</span> UP SERBER
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Всплывающее уведомление (Toast) -->
+  <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
+    <div class="toast-content">
+      <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5" />
+      </svg>
+      <span>Ссылка скопирована в буфер обмена!</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

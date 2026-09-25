@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "g": "^2.0.1",
+    "node": "^22.23.3"
+  }
+}

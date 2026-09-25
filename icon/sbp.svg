@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <path fill="#50378C" d="M128 32l64 74h-54l-10-14-10 14H64z"/>
+  <path fill="#00A2E8" d="M192 106l32 94-54-18-10-18 10-18 22-40z"/>
+  <path fill="#F8BA15" d="M170 182l-84 42 16-56 16-10 16 10 36 14z"/>
+  <path fill="#1DB954" d="M86 224L32 150h54l10 14 10-14h54z"/>
+  <path fill="#E31E24" d="M64 150L32 56l54 18 10 18-10 18-22 40z"/>
+  <!-- Официальные буквы СБП или знак -->
+  <circle cx="128" cy="128" r="42" fill="#14171E"/>
+  <text x="128" y="136" font-family="'Orbitron', -apple-system, sans-serif" font-size="22" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">СБП</text>
+</svg>

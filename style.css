@@ -1,0 +1,965 @@
+/* ==========================================================================
+   SERBER LINKS — СОВРЕМЕННЫЙ ГРАФИТОВЫЙ СТИЛЬ
+   ========================================================================== */
+
+:root {
+  /* Цветовая палитра: глубокий графит и акценты */
+  --bg-base: #0f1013;
+  --bg-graphite: #14161a;
+  --bg-graphite-card: rgba(24, 26, 32, 0.78);
+  --bg-graphite-hover: rgba(34, 38, 48, 0.9);
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card-hover: rgba(255, 170, 0, 0.35);
+  
+  /* Текстовые цвета */
+  --text-primary: #ffffff;
+  --text-secondary: #9ea5b3;
+  --text-muted: #646a78;
+  
+  /* Акцентные цвета */
+  --accent-gold: #ffaa00;
+  --accent-gold-glow: rgba(255, 170, 0, 0.4);
+  --accent-cyan: #00e5ff;
+  --accent-cyan-glow: rgba(0, 229, 255, 0.3);
+  --accent-green: #10b981;
+
+  /* Шрифты */
+  --font-heading: 'Orbitron', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Анимации и скругления */
+  --radius-card: 16px;
+  --radius-full: 9999px;
+  --transition-smooth: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Сброс стилей */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 50% 0%, #1c1f26 0%, #121317 45%, #0b0c0e 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   ФОНОВАЯ АТМОСФЕРА И ЧАСТИЦЫ
+   -------------------------------------------------------------------------- */
+.bg-atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+#particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.65;
+}
+
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  opacity: 0.18;
+}
+
+.glow-cyan {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.glow-amber {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.12;
+}
+
+.bg-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   ОСНОВНОЙ КОНТЕЙНЕР
+   -------------------------------------------------------------------------- */
+.page-container {
+  width: 100%;
+  max-width: 580px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  padding: 0 16px 36px 16px;
+}
+
+/* --------------------------------------------------------------------------
+   ШАПКА (ВЕРХНИЙ БАННЕР)
+   -------------------------------------------------------------------------- */
+.banner-wrapper {
+  position: relative;
+  width: calc(100% + 32px);
+  margin-left: -16px;
+  margin-right: -16px;
+  overflow: hidden;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+}
+
+.banner-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #090a0d;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
+  display: block;
+  filter: contrast(1.08) brightness(1.02);
+  transition: transform 0.6s ease;
+}
+
+.banner-wrapper:hover .banner-img {
+  transform: scale(1.025);
+}
+
+.banner-fade-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 16, 19, 0.4) 0%,
+    transparent 35%,
+    rgba(15, 16, 19, 0.7) 75%,
+    var(--bg-base) 100%
+  );
+  pointer-events: none;
+}
+
+/* Верхняя панель на шапке */
+.top-nav-bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 2;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(14, 16, 20, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-green);
+  box-shadow: 0 0 10px var(--accent-green);
+  animation: pulse-green 2s infinite ease-in-out;
+}
+
+@keyframes pulse-green {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.65; }
+}
+
+.status-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #d1fae5;
+  font-family: var(--font-heading);
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(22, 25, 32, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.share-btn:hover {
+  background: rgba(40, 45, 58, 0.95);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.share-btn:active {
+  transform: translateY(0);
+}
+
+.share-icon {
+  width: 15px;
+  height: 15px;
+  stroke: var(--accent-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   СЕКЦИЯ ПРОФИЛЯ (АВАТАР, ИМЯ, ТЕКСТ)
+   -------------------------------------------------------------------------- */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: -65px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Анимированный аватар */
+.avatar-wrapper {
+  position: relative;
+  width: 124px;
+  height: 124px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-inner {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 0 25px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(0, 229, 255, 0.25);
+  z-index: 2;
+  background: #14171e;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.avatar-wrapper:hover .avatar-img {
+  transform: scale(1.08);
+}
+
+/* Анимированная неоново-синяя дымная рамка */
+.avatar-ink-frame-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 172px;
+  height: 172px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-ink-frame {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Насыщенное неоново-циановое свечение в тон волос SERBER */
+  filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.8)) drop-shadow(0 0 22px rgba(0, 229, 255, 0.4));
+  animation: spin-ink-ring 14s linear infinite;
+  transform-origin: center center;
+  transition: filter 0.4s ease;
+}
+
+.avatar-wrapper:hover .avatar-ink-frame {
+  animation-duration: 8s;
+  filter: drop-shadow(0 0 16px rgba(0, 229, 255, 1)) drop-shadow(0 0 28px rgba(0, 229, 255, 0.65));
+}
+
+@keyframes spin-ink-ring {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Информация об авторе */
+.author-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.name-badge-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.author-name {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(180deg, #ffffff 40%, #c4cad4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--accent-cyan);
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
+}
+
+.sub-headline {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  text-shadow: 0 0 14px var(--accent-gold-glow);
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+
+.sub-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  letter-spacing: 0.6px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   СПИСОК ССЫЛОК (КАРТОЧКИ)
+   -------------------------------------------------------------------------- */
+.links-section {
+  width: 100%;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  width: 100%;
+}
+
+.link-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  background: var(--bg-graphite-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  text-decoration: none;
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  outline: none;
+}
+
+/* Графитовый ховер с подсветкой контура */
+.link-card:hover {
+  background: var(--bg-graphite-hover);
+  border-color: var(--border-card-hover);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 170, 0, 0.12);
+}
+
+.link-card:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+/* Фоновый световой блик на карточке при ховере */
+.card-glow-reflection {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.link-card:hover .card-glow-reflection {
+  left: 140%;
+}
+
+/* Иконки в карточках */
+.card-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.badge-icon {
+  display: block;
+  pointer-events: none;
+  transition: transform 0.28s ease;
+}
+
+.icon-da {
+  width: 25px;
+  height: 29px;
+  filter: drop-shadow(0 2px 6px rgba(245, 122, 7, 0.4));
+}
+
+.icon-dp {
+  width: 32px;
+  height: 20px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(68, 171, 79, 0.4));
+}
+
+.icon-yt {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon-tg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon-vk {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Стили бейджей по сервисам */
+.da-badge {
+  background: rgba(245, 156, 7, 0.12);
+  border: 1px solid rgba(245, 156, 7, 0.35);
+}
+
+.dp-badge {
+  background: rgba(68, 171, 79, 0.12);
+  border: 1px solid rgba(68, 171, 79, 0.35);
+}
+
+.yt-badge {
+  background: #ff0000;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.tg-badge {
+  background: #37aee2;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.vk-badge {
+  background: #1976d2;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Фоновый водяной знак логотипа DonatePay на остальной части кнопки */
+.card-bg-brand {
+  position: absolute;
+  left: 76px;
+  right: 46px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 32px;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 0.22;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card-bg-brand-img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.link-donatepay:hover .card-bg-brand {
+  opacity: 0.42;
+  transform: translateY(-50%) scale(1.03);
+}
+
+/* Микро-анимация иконки при ховере */
+.link-card:hover .card-icon-box {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+/* Текстовый контент в карточке */
+.card-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+}
+
+.card-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link-card:hover .card-title {
+  color: #ffffff;
+}
+
+/* Стрелочка на карточке */
+.card-arrow {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b92a2;
+  margin-left: 12px;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+  position: relative;
+  z-index: 2;
+}
+
+.card-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.link-card:hover .card-arrow {
+  color: var(--accent-gold);
+  transform: translate(3px, -3px);
+}
+
+/* Индивидуальные акценты при ховере */
+.link-donationalerts:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 18px rgba(245, 158, 11, 0.16);
+}
+.link-donationalerts:hover .card-arrow {
+  color: #f59e0b;
+}
+
+.link-donatepay:hover {
+  border-color: rgba(68, 171, 79, 0.5);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 18px rgba(68, 171, 79, 0.18);
+}
+.link-donatepay:hover .card-arrow {
+  color: #44ab4f;
+}
+
+.link-youtube:hover {
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 18px rgba(239, 68, 68, 0.18);
+}
+.link-youtube:hover .card-arrow {
+  color: #ef4444;
+}
+
+.link-telegram:hover {
+  border-color: rgba(14, 165, 233, 0.5);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 18px rgba(14, 165, 233, 0.18);
+}
+.link-telegram:hover .card-arrow {
+  color: #0ea5e9;
+}
+
+.link-vk:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 18px rgba(37, 99, 235, 0.18);
+}
+.link-vk:hover .card-arrow {
+  color: #3b82f6;
+}
+
+/* --------------------------------------------------------------------------
+   ПОДВАЛ
+   -------------------------------------------------------------------------- */
+.page-footer {
+  margin-top: 36px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.footer-copyright {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.dot-sep {
+  color: var(--accent-gold);
+  margin: 0 4px;
+}
+
+/* --------------------------------------------------------------------------
+   УВЕДОМЛЕНИЕ (TOAST)
+   -------------------------------------------------------------------------- */
+.toast-notification {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  opacity: 0;
+  background: rgba(20, 24, 30, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 229, 255, 0.2);
+  border-radius: var(--radius-full);
+  padding: 12px 24px;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  z-index: 999;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.toast-notification.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toast-icon {
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 0 12px 28px 12px;
+  }
+
+  .banner-wrapper {
+    width: calc(100% + 24px);
+    margin-left: -12px;
+    margin-right: -12px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+  }
+
+  .banner-image-container {
+    height: 160px;
+  }
+
+  .profile-section {
+    margin-top: -55px;
+  }
+
+  .avatar-wrapper {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 14px;
+  }
+
+  .avatar-inner {
+    width: 96px;
+    height: 96px;
+  }
+
+  .avatar-ink-frame-container {
+    width: 152px;
+    height: 152px;
+  }
+
+  .author-name {
+    font-size: 26px;
+    letter-spacing: 3px;
+  }
+
+  .sub-headline {
+    font-size: 13.5px;
+    letter-spacing: 1.2px;
+  }
+
+  .sub-text {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .link-card {
+    padding: 12px 16px;
+  }
+
+  .card-icon-box {
+    width: 40px;
+    height: 40px;
+    margin-right: 14px;
+  }
+
+  .card-icon-box svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .currency-symbol {
+    font-size: 19px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-subtitle {
+    font-size: 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ЦЕНТРИРОВАНИЕ ДЛЯ ПК И ПЛАНШЕТОВ (ОТ 768px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  body {
+    justify-content: center;
+    padding: 36px 0;
+  }
+
+  .page-container {
+    min-height: auto;
+    margin: auto 0;
+    padding-bottom: 20px;
+  }
+
+  .banner-wrapper {
+    border-radius: 28px;
+  }
+
+  .banner-image-container {
+    height: 220px;
+  }
+}
+
+/* Стили для кнопки СБП (Система быстрых платежей) */
+.sbp-badge {
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  padding: 5px;
+}
+
+.icon-sbp {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.link-sbp:hover {
+  border-color: rgba(0, 162, 232, 0.5);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 0 18px rgba(0, 162, 232, 0.2);
+}
+
+.link-sbp:hover .card-arrow {
+  color: #00a2e8;
+}
+
+/* Стили для кнопки с номером карты */
+.link-card-number {
+  font-family: inherit;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-graphite-card);
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+.card-badge {
+  background: linear-gradient(135deg, #0284c7 0%, #1e40af 100%);
+  border: 1px solid rgba(147, 197, 253, 0.35);
+  color: #ffffff;
+}
+
+.card-badge svg {
+  width: 22px;
+  height: 22px;
+  stroke: #ffffff;
+}
+
+.card-num-text {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  letter-spacing: 1.2px;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.card-copy-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-size: 11.5px;
+  font-weight: 600;
+  margin-left: 10px;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+  position: relative;
+  z-index: 2;
+}
+
+.copy-icon-svg {
+  width: 14px;
+  height: 14px;
+}
+
+.link-card-number:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 0 18px rgba(56, 189, 248, 0.15);
+}
+
+.link-card-number:hover .card-copy-action {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+
+.link-card-number.copied {
+  border-color: rgba(16, 185, 129, 0.6) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.25) !important;
+}
+
+.link-card-number.copied .card-copy-action {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  color: #34d399 !important;
+}
+
+
