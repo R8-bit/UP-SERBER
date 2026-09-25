@@ -2,3 +2,4 @@ node_modules/
 archive/
 *.log
 .DS_Store
+*-orig.*

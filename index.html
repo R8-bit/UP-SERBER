@@ -7,16 +7,30 @@
   <title>UP SERBER — Официальные ссылки и донат</title>
   <meta name="description"
     content="Все официальные ссылки стримера UP SERBER: YouTube, Telegram, ВКонтакте и способы поддержки донатом.">
+  <meta name="theme-color" content="#0f1013">
 
-  <!-- Подключение шрифтов Google Fonts -->
+  <!-- Open Graph / Соцсети -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="UP SERBER — Официальные ссылки и донат">
+  <meta property="og:description" content="Все официальные ссылки стримера UP SERBER: YouTube, Telegram, ВКонтакте и способы поддержки донатом.">
+  <meta property="og:image" content="gallery/serber-shabka.webp">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UP SERBER — Официальные ссылки и донат">
+  <meta name="twitter:description" content="Все официальные ссылки стримера UP SERBER: YouTube, Telegram, ВКонтакте и способы поддержки донатом.">
+  <meta name="twitter:image" content="gallery/serber-shabka.webp">
+
+  <!-- Быстрое подключение шрифтов Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap"
     rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/jpeg" href="gallery/ser1.jpg">
+  <link rel="icon" type="image/webp" href="gallery/ser1.webp">
+  <link rel="apple-touch-icon" href="gallery/ser1.jpg">
 </head>
 
 <body>
@@ -33,7 +47,11 @@
     <!-- Верхняя шапка (баннер) -->
     <header class="banner-wrapper">
       <div class="banner-image-container">
-        <img src="gallery/serber-shabka.jpg" alt="SERBER Шапка канала" class="banner-img" id="bannerImg">
+        <picture>
+          <source srcset="gallery/serber-shabka.webp" type="image/webp">
+          <img src="gallery/serber-shabka.jpg" alt="SERBER Шапка канала" class="banner-img" id="bannerImg"
+            width="1400" height="788" fetchpriority="high" decoding="async">
+        </picture>
         <div class="banner-fade-overlay"></div>
       </div>
 
@@ -41,7 +59,7 @@
       <div class="top-nav-bar">
         <button class="share-btn" id="shareBtn" title="Скопировать ссылку на страницу" aria-label="Поделиться">
           <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+            stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
             <circle cx="18" cy="5" r="3"></circle>
             <circle cx="6" cy="12" r="3"></circle>
             <circle cx="18" cy="19" r="3"></circle>
@@ -57,12 +75,20 @@
     <section class="profile-section">
       <!-- Контейнер аватара с анимированной синей дымной рамкой -->
       <div class="avatar-wrapper">
-        <div class="avatar-ink-frame-container">
-          <img src="gallery/avatar-ink-blue.png" alt="Анимированная рамка" class="avatar-ink-frame">
+        <div class="avatar-ink-frame-container" aria-hidden="true">
+          <picture>
+            <source srcset="gallery/avatar-ink-blue.webp" type="image/webp">
+            <img src="gallery/avatar-ink-blue.png" alt="" class="avatar-ink-frame" width="172" height="172"
+              decoding="async">
+          </picture>
         </div>
 
         <div class="avatar-inner">
-          <img src="gallery/ser1.jpg" alt="SERBER Аватар" class="avatar-img" id="avatarImg">
+          <picture>
+            <source srcset="gallery/ser1.webp" type="image/webp">
+            <img src="gallery/ser1.jpg" alt="SERBER Аватар" class="avatar-img" id="avatarImg" width="108"
+              height="108" decoding="async">
+          </picture>
         </div>
       </div>
 
@@ -70,16 +96,16 @@
       <div class="author-info">
         <div class="name-badge-row">
           <h1 class="author-name">UP SERBER</h1>
-          <span class="verified-badge" title="Подтверждённый профиль">
-            <svg viewBox="0 0 24 24" fill="currentColor">
+          <span class="verified-badge" title="Подтверждённый профиль" aria-label="Подтверждённый профиль">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true">
               <path
                 d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.2 14.2l-3.5-3.5 1.41-1.41 2.09 2.08 5.69-5.69 1.41 1.41-7.1 7.11z" />
             </svg>
           </span>
         </div>
 
-        <!-- Заголовок призыва к донату (как в референсе) -->
-        <h2 class="sub-headline">ПОДДЕРЖАТЬ МЕНЯ ДОНАТИКОМ ТУТ)</h2>
+        <!-- Заголовок призыва к донату -->
+        <h2 class="sub-headline">ПОДДЕРЖАТЬ МЕНЯ ДОНАТИКОМ ТУТ</h2>
         <p class="sub-text">Все мои ссылки — здесь</p>
       </div>
     </section>
@@ -92,18 +118,20 @@
         <a href="https://new.donatepay.ru/donate/1307876" target="_blank" rel="noopener noreferrer"
           class="link-card link-donatepay" id="link-dp">
           <div class="card-icon-box dp-badge">
-            <img src="icon/donatepay.svg" alt="DonatePay" class="badge-icon icon-dp">
+            <img src="icon/donatepay.svg" alt="DonatePay" class="badge-icon icon-dp" width="32" height="20"
+              loading="lazy" decoding="async">
           </div>
           <div class="card-content">
             <div class="card-title">DonatePay</div>
             <div class="card-subtitle">Донат на развитие канала</div>
           </div>
           <div class="card-bg-brand" aria-hidden="true">
-            <img src="icon/logo-new-dark.svg" alt="" class="card-bg-brand-img">
+            <img src="icon/logo-new-dark.svg" alt="" class="card-bg-brand-img" width="120" height="32"
+              loading="lazy" decoding="async">
           </div>
           <div class="card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round" width="18" height="18">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
@@ -111,12 +139,12 @@
           <div class="card-glow-reflection"></div>
         </a>
 
-        <!-- 3. Перевод по номеру карты -->
+        <!-- 2. Перевод по номеру карты -->
         <button type="button" class="link-card link-card-number" id="copyCardBtn" data-card="2202 2092 3153 2168"
           title="Нажмите, чтобы скопировать номер карты">
           <div class="card-icon-box card-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round" width="22" height="22" aria-hidden="true">
               <rect x="2" y="5" width="20" height="14" rx="2"></rect>
               <line x1="2" y1="10" x2="22" y2="10"></line>
             </svg>
@@ -128,7 +156,7 @@
           <div class="card-copy-action">
             <span class="copy-tag" id="copyTagText">Скопировать</span>
             <svg class="copy-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
+              stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
@@ -136,11 +164,12 @@
           <div class="card-glow-reflection"></div>
         </button>
 
-        <!-- 4. DonationAlerts -->
+        <!-- 3. DonationAlerts -->
         <a href="https://www.donationalerts.com/r/shtorm444" target="_blank" rel="noopener noreferrer"
           class="link-card link-donationalerts" id="link-da">
           <div class="card-icon-box da-badge">
-            <img src="icon/donationalerts.svg" alt="DonationAlerts" class="badge-icon icon-da">
+            <img src="icon/donationalerts.svg" alt="DonationAlerts" class="badge-icon icon-da" width="25"
+              height="29" loading="lazy" decoding="async">
           </div>
           <div class="card-content">
             <div class="card-title">DonationAlerts</div>
@@ -148,7 +177,7 @@
           </div>
           <div class="card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round" width="18" height="18">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
@@ -156,11 +185,12 @@
           <div class="card-glow-reflection"></div>
         </a>
 
-        <!-- 3. YouTube -->
+        <!-- 4. YouTube -->
         <a href="https://www.youtube.com/@Serber-yt" target="_blank" rel="noopener noreferrer"
           class="link-card link-youtube" id="link-yt">
           <div class="card-icon-box yt-badge">
-            <img src="icon/youtube.svg" alt="YouTube" class="badge-icon icon-yt">
+            <img src="icon/youtube.svg" alt="YouTube" class="badge-icon icon-yt" width="44" height="44"
+              loading="lazy" decoding="async">
           </div>
           <div class="card-content">
             <div class="card-title">YouTube</div>
@@ -168,7 +198,7 @@
           </div>
           <div class="card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round" width="18" height="18">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
@@ -176,11 +206,12 @@
           <div class="card-glow-reflection"></div>
         </a>
 
-        <!-- 4. Telegram -->
+        <!-- 5. Telegram -->
         <a href="https://t.me/serberff" target="_blank" rel="noopener noreferrer" class="link-card link-telegram"
           id="link-tg">
           <div class="card-icon-box tg-badge">
-            <img src="icon/telegram.svg" alt="Telegram" class="badge-icon icon-tg">
+            <img src="icon/telegram.svg" alt="Telegram" class="badge-icon icon-tg" width="44" height="44"
+              loading="lazy" decoding="async">
           </div>
           <div class="card-content">
             <div class="card-title">Telegram</div>
@@ -188,7 +219,7 @@
           </div>
           <div class="card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round" width="18" height="18">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
@@ -196,11 +227,12 @@
           <div class="card-glow-reflection"></div>
         </a>
 
-        <!-- 5. VK -->
+        <!-- 6. VK -->
         <a href="https://vk.ru/savaaa_14" target="_blank" rel="noopener noreferrer" class="link-card link-vk"
           id="link-vk">
           <div class="card-icon-box vk-badge">
-            <img src="icon/vk.svg" alt="VK" class="badge-icon icon-vk">
+            <img src="icon/vk.svg" alt="VK" class="badge-icon icon-vk" width="44" height="44"
+              loading="lazy" decoding="async">
           </div>
           <div class="card-content">
             <div class="card-title">VK</div>
@@ -208,7 +240,7 @@
           </div>
           <div class="card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round" width="18" height="18">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
@@ -232,14 +264,14 @@
   <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
     <div class="toast-content">
       <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
+        stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
         <path d="M20 6L9 17l-5-5" />
       </svg>
       <span>Ссылка скопирована в буфер обмена!</span>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

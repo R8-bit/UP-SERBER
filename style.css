@@ -47,6 +47,18 @@ html {
   color: var(--text-primary);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  /* Скрытие полосы прокрутки со сбережением функции скролла */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE и Edge */
+}
+
+/* Скрытие полосы прокрутки для браузеров на движке WebKit / Blink (Chrome, Safari, Edge, Opera) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 body {
@@ -56,6 +68,7 @@ body {
   align-items: center;
   position: relative;
   overflow-x: hidden;
+  max-width: 100%;
   background: radial-gradient(circle at 50% 0%, #1c1f26 0%, #121317 45%, #0b0c0e 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -961,5 +974,61 @@ body {
   border-color: rgba(16, 185, 129, 0.5) !important;
   color: #34d399 !important;
 }
+
+/* --------------------------------------------------------------------------
+   ОПТИМИЗАЦИЯ РЕНДЕРИНГА И СТИЛИ RIPPLE ЭФФЕКТА
+   -------------------------------------------------------------------------- */
+.card-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+  transform: scale(0);
+  animation: ripple-anim 0.55s ease-out forwards;
+  pointer-events: none;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  will-change: transform, opacity;
+}
+
+@keyframes ripple-anim {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(4.2);
+    opacity: 0;
+  }
+}
+
+/* Оптимизация композитинга браузера */
+.avatar-ink-frame {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.link-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 74px;
+}
+
+/* Учет предпочтений пользователя по снижению анимаций */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .card-glow-reflection {
+    display: none !important;
+  }
+  #particles-canvas {
+    display: none !important;
+  }
+}
+
 
 
